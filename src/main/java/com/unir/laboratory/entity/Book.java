@@ -1,5 +1,7 @@
 package com.unir.laboratory.entity;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +33,12 @@ public class Book {
 
     @Column(name = "publisher")
     private String publisher;
+
+    @Column(name = "publish_date")
+    private Date publishDate;
+
+    @Column(name = "isbn_code")
+    private String isbnCode;
 
     @Column(name = "price")
     private double price;
