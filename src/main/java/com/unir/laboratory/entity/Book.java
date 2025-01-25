@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Book {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
@@ -24,11 +24,11 @@ public class Book {
 
     @Column(name = "author")
     private String author;
-	
-	@Column(name = "title")
-	private String title;
-    
-	@Column(name = "edition")
+
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "edition")
     private int edition;
 
     @Column(name = "publisher")
@@ -55,10 +55,16 @@ public class Book {
     @Column(name = "genre")
     private String genre;
 
-    @Column(name = "description",length = 500)
+    @Column(name = "description", length = 500)
     private String description;
 
     @Column(name = "stock")
     private int stock;
+
+    @Column(name = "valoration")
+    private int valoration;
+
+    @Column(name = "visibility")
+    private Boolean visibility;
 
 }
