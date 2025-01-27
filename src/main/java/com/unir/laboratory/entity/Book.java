@@ -29,7 +29,7 @@ public class Book {
     private String title;
 
     @Column(name = "edition")
-    private int edition;
+    private Integer edition;
 
     @Column(name = "publisher")
     private String publisher;
@@ -41,16 +41,16 @@ public class Book {
     private String isbnCode;
 
     @Column(name = "price")
-    private double price;
+    private Double price;
 
     @Column(name = "price_iva")
-    private double priceIva;
+    private Double priceIva;
 
     @Column(name = "price_digital")
-    private double priceDigital;
+    private Double priceDigital;
 
     @Column(name = "price_digital_iva")
-    private double priceDigitalIva;
+    private Double priceDigitalIva;
 
     @Column(name = "genre")
     private String genre;
@@ -59,12 +59,30 @@ public class Book {
     private String description;
 
     @Column(name = "stock")
-    private int stock;
+    private Integer stock;
 
     @Column(name = "valoration")
-    private int valoration;
+    private Integer valoration;
 
     @Column(name = "visibility")
     private Boolean visibility;
+
+    public void update(Book book) {
+        this.author = book.getAuthor();
+        this.title = book.getTitle();
+        this.edition = book.getEdition();
+        this.publisher = book.getPublisher();
+        this.publishDate = book.getPublishDate();
+        this.isbnCode = book.getIsbnCode();
+        this.price = book.getPrice();
+        this.priceIva = book.getPriceIva();
+        this.priceDigital = book.getPriceDigital();
+        this.priceDigitalIva = book.getPriceDigitalIva();
+        this.genre = book.getGenre();
+        this.description = book.getDescription();
+        this.stock = book.getStock();
+        this.valoration = book.getValoration();
+        this.visibility = book.getVisibility();
+    }
 
 }

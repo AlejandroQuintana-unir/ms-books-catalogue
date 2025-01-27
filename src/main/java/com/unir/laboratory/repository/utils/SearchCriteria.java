@@ -23,9 +23,32 @@ public class SearchCriteria<Book> implements Specification<Book> {
         List<Predicate> predicates = new LinkedList<>();
 
         for (SearchStatement criteria : list) {
-            if (criteria.getOperation().equals(SearchOperation.EQUAL)) {
+            if (criteria.getOperation().equals(SearchOperation.GREATER_THAN)) {
+                predicates.add(builder.greaterThan(
+                        root.get(criteria.getKey()), criteria.getValue().toString()));
+            } else if (criteria.getOperation().equals(SearchOperation.LESS_THAN)) {
+                predicates.add(builder.lessThan(
+                        root.get(criteria.getKey()), criteria.getValue().toString()));
+            } else if (criteria.getOperation().equals(SearchOperation.GREATER_THAN_EQUAL)) {
+                predicates.add(builder.greaterThanOrEqualTo(
+                        root.get(criteria.getKey()), criteria.getValue().toString()));
+            } else if (criteria.getOperation().equals(SearchOperation.LESS_THAN_EQUAL)) {
+                predicates.add(builder.lessThanOrEqualTo(
+                        root.get(criteria.getKey()), criteria.getValue().toString()));
+            } else if (criteria.getOperation().equals(SearchOperation.NOT_EQUAL)) {
+                predicates.add(builder.notEqual(
+                        root.get(criteria.getKey()), criteria.getValue()));
+            } else if (criteria.getOperation().equals(SearchOperation.EQUAL)) {
                 predicates.add(builder.equal(
                         root.get(criteria.getKey()), criteria.getValue()));
+            } else if (criteria.getOperation().equals(SearchOperation.MATCH)) {
+                predicates.add(builder.like(
+                        builder.lower(root.get(criteria.getKey())),
+                        "%" + criteria.getValue().toString().toLowerCase() + "%"));
+            } else if (criteria.getOperation().equals(SearchOperation.MATCH_END)) {
+                predicates.add(builder.like(
+                        builder.lower(root.get(criteria.getKey())),
+                        criteria.getValue().toString().toLowerCase() + "%"));
             }
 
         }
