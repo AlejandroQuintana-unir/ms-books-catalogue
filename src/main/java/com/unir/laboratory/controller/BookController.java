@@ -21,7 +21,7 @@ import com.unir.laboratory.service.BookService;
 @Controller
 public class BookController {
 
-    @Autowired // Es neceario el autowired para que funcione la inyección de dependencias?
+    @Autowired 
     BookService bookService;
 
     @GetMapping("/books")
@@ -37,9 +37,9 @@ public class BookController {
         }
     }
 
-    @GetMapping("/books/{BookId}")
-    public ResponseEntity<Book> getBook(@PathVariable String BookId) {
-        Book book = bookService.getBook(BookId);
+    @GetMapping("/books/{bookId}")
+    public ResponseEntity<Book> getBook(@PathVariable String bookId) {
+        Book book = bookService.getBook(bookId);
 
         if (book != null) {
             return ResponseEntity.ok(book);
@@ -59,9 +59,9 @@ public class BookController {
         }
     }
 
-    @DeleteMapping("/books/{BookId}")
-    public ResponseEntity<Void> deleteBook(@PathVariable String BookId) {
-        Boolean book = bookService.removeBook(BookId);
+    @DeleteMapping("/books/{bookId}")
+    public ResponseEntity<Void> deleteBook(@PathVariable String bookId) {
+        Boolean book = bookService.removeBook(bookId);
 
         if (Boolean.TRUE.equals(book)) {
             return ResponseEntity.ok().build();
@@ -70,9 +70,9 @@ public class BookController {
         }
     }
 
-    @PatchMapping("/books/{BookId}")
-    public ResponseEntity<Book> patchBook(@PathVariable String BookId, @RequestBody Book book) {
-        Book UpdatedBook = bookService.PatchBook(BookId, book);
+    @PatchMapping("/books/{bookId}")
+    public ResponseEntity<Book> patchBook(@PathVariable String bookId, @RequestBody Book book) {
+        Book UpdatedBook = bookService.patchBook(bookId, book);
 
         if (UpdatedBook != null) {
             return ResponseEntity.ok(UpdatedBook);
@@ -81,9 +81,9 @@ public class BookController {
         }
     }
 
-    @PutMapping("/books/{BookId}")
-    public ResponseEntity<Book> putBook(@PathVariable String BookId, @RequestBody Book book) {
-        Book UpdatedBook = bookService.updateBook(BookId, book);
+    @PutMapping("/books/{bookId}")
+    public ResponseEntity<Book> putBook(@PathVariable String bookId, @RequestBody Book book) {
+        Book UpdatedBook = bookService.updateBook(bookId, book);
 
         if (UpdatedBook != null) {
             return ResponseEntity.ok(UpdatedBook);

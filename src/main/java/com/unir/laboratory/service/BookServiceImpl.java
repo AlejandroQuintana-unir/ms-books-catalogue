@@ -68,7 +68,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book PatchBook(String bookId, Book book) {
+    public Book patchBook(String bookId, Book book) {
         Book bookToUpdate = bookRepository.getById(bookId);
         if (bookToUpdate != null) {
             try {
@@ -82,7 +82,6 @@ public class BookServiceImpl implements BookService {
                 log.error("Error updating book {}", bookId, e);
                 return null;
             }
-
         } else {
             return null;
         }
