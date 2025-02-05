@@ -3,11 +3,10 @@ package com.unir.laboratory.service;
 import java.sql.Date;
 import java.util.List;
 
+import static com.github.fge.jsonpatch.mergepatch.JsonMergePatch.fromJson;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonpatch.JsonPatchException;
-import com.github.fge.jsonpatch.mergepatch.JsonMergePatch;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,21 +67,17 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book patchBook(String bookId, Book book) {
+    public Book patchBook(String bookId, String book) {
         Book bookToUpdate = bookRepository.getById(bookId);
-        if (bookToUpdate != null) {
-            try {
-                JsonMergePatch jsonMergePatch = JsonMergePatch.fromJson(objectMapper.readTree(bookId));
-                JsonNode target = jsonMergePatch
-                        .apply(objectMapper.readTree(objectMapper.writeValueAsString(bookToUpdate)));
-                Book patched = objectMapper.treeToValue(target, Book.class);
-                bookRepository.save(patched);
-                return patched;
-            } catch (JsonProcessingException | JsonPatchException e) {
-                log.error("Error updating book {}", bookId, e);
-                return null;
-            }
-        } else {
+        if (bookToUpdate == null)
+            return null;
+
+        try {
+            var target = fromJson(objectMapper.readTree(book))
+                    .apply(objectMapper.readTree(objectMapper.writeValueAsString(bookToUpdate)));
+            return bookRepository.save(objectMapper.treeToValue(target, Book.class));
+        } catch (JsonProcessingException | JsonPatchException e) {
+            log.error("Error al actualizar el libro con id: {} - {}", bookId, e.getMessage());
             return null;
         }
     }

@@ -21,7 +21,7 @@ import com.unir.laboratory.service.BookService;
 @Controller
 public class BookController {
 
-    @Autowired 
+    @Autowired
     BookService bookService;
 
     @GetMapping("/books")
@@ -71,7 +71,7 @@ public class BookController {
     }
 
     @PatchMapping("/books/{bookId}")
-    public ResponseEntity<Book> patchBook(@PathVariable String bookId, @RequestBody Book book) {
+    public ResponseEntity<Book> patchBook(@PathVariable String bookId, @RequestBody String book) {
         Book UpdatedBook = bookService.patchBook(bookId, book);
 
         if (UpdatedBook != null) {

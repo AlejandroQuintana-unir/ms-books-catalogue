@@ -16,7 +16,7 @@ public interface BookService {
 
     Boolean removeBook(String bookId);
 
-    Book patchBook(String bookId, Book book);
+    Book patchBook(String bookId, String book);
 
     Book updateBook(String bookId, Book book);
 
