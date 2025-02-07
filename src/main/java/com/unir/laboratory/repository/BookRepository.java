@@ -40,10 +40,6 @@ public class BookRepository {
 
         SearchCriteria<Book> spec = new SearchCriteria<>();
 
-        if (valoration != null) {
-            spec.add(new SearchStatement("valoration", valoration, SearchOperation.EQUAL));
-        }
-
         if (visibility != null) {
             spec.add(new SearchStatement("visibility", visibility, SearchOperation.EQUAL));
         }
