@@ -31,7 +31,7 @@
 		<elasticsearch.custom.version>7.10.2</elasticsearch.custom.version>
 	</properties>
 	<dependencies>
-
+ 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
