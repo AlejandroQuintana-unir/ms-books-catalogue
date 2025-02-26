@@ -1,10 +1,10 @@
-package com.unir.laboratory.repository;
+// package com.unir.laboratory.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+// import org.springframework.data.jpa.repository.JpaRepository;
+// import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-import com.unir.laboratory.entity.Book;
+// import com.unir.laboratory.entity.Book;
 
-public interface BookJpaRepository extends JpaRepository<Book, Long>, JpaSpecificationExecutor<Book> {
+//  public interface BookJpaRepository extends JpaRepository<Book, Long>, JpaSpecificationExecutor<Book> {
 
-}
+//  }
