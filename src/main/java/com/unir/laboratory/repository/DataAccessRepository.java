@@ -6,6 +6,7 @@ import lombok.SneakyThrows;
 import org.apache.commons.lang.StringUtils;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.MultiMatchQueryBuilder.Type;
+import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
@@ -64,9 +65,9 @@ public class DataAccessRepository {
         }
 
         if (!StringUtils.isEmpty(title)) {
-            querySpec.must(QueryBuilders.multiMatchQuery(title, "title", "title.search").type(Type.BOOL_PREFIX));
-        }
-
+            querySpec.must(QueryBuilders.matchQuery("title", title).operator(Operator.AND));
+        }     
+        
         if (!StringUtils.isEmpty(description)) {
             querySpec.must(QueryBuilders.multiMatchQuery(description, descriptionSearchFields).type(Type.BOOL_PREFIX));
         }
