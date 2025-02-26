@@ -5,8 +5,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
-import org.springframework.data.elasticsearch.annotations.InnerField;
-import org.springframework.data.elasticsearch.annotations.MultiField;
 
 import java.util.Date;
 
@@ -25,8 +23,7 @@ public class ElasticBook {
     @Field(type = FieldType.Keyword, name = "author")
     private String author;
 
-    @MultiField(mainField = @Field(type = FieldType.Keyword, name = "name"),
-    otherFields = @InnerField(suffix = "search", type = FieldType.Search_As_You_Type))
+    @Field(type = FieldType.Search_As_You_Type, name = "title")
     private String title;
 
     @Field(type = FieldType.Integer, name = "edition")
@@ -67,5 +64,5 @@ public class ElasticBook {
 
     @Field(type = FieldType.Boolean, name = "visibility")
     private Boolean visibility;
-    
+
 }
